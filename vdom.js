@@ -157,9 +157,9 @@ function mount(vnode, parent, before = null) {
   updateProps(element, vnode.props);
 
   if (!("dangerouslySetInnerHTML" in vnode.props)) {
-    for (const child of vnode.children) {
-      mount(normalize(child), element);
-    }
+    vnode.children = vnode.children.map(child =>
+  mount(normalize(child), element)
+);
   }
 
   parent.insertBefore(element, before);
